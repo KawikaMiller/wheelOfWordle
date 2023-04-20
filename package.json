@@ -1,5 +1,27 @@
 {
   "dependencies": {
     "prompt-sync": "^4.2.0"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "wheelofwordle",
+  "description": "",
+  "version": "1.0.0",
+  "main": "server.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KMArtwork/wheelOfWordle.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KMArtwork/wheelOfWordle/issues"
+  },
+  "homepage": "https://github.com/KMArtwork/wheelOfWordle#readme"
 }
