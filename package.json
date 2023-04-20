@@ -1,6 +1,10 @@
 {
   "dependencies": {
-    "prompt-sync": "^4.2.0"
+    "chance": "^1.1.11",
+    "dotenv": "^16.0.3",
+    "prompt-sync": "^4.2.0",
+    "socket.io": "^4.6.1",
+    "socket.io-client": "^4.6.1"
   },
   "scripts": {
     "start": "node server.js"
@@ -12,7 +16,6 @@
   "directories": {
     "lib": "lib"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/KMArtwork/wheelOfWordle.git"
