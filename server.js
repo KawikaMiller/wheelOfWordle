@@ -5,7 +5,7 @@ const { Server } = require("socket.io");
 const io = new Server(process.env.PORT);
 const PlayerQueue = require("./lib/playerqueue");
 let playerQueue = new PlayerQueue();
-const words = ["apple", "banana", "cherry", "orange", "kiwi", "peach", "pear", "strawberry", "watermelon", "pineapple"];
+const words = ['real-time', 'websockets', 'event-driven', 'server', 'client', 'emit', 'on', 'acknowledgment', 'namespace', 'room', 'broadcast', 'message', 'disconnect', 'reconnect', 'middleware', 'authentication', 'multiplexing', 'heartbeat', 'adapter', 'cluster'];
 let secretWord = words[Math.floor(Math.random() * words.length)];
 let revealedWord = Array.from(secretWord, () => 0);
 let turnId = 1;
