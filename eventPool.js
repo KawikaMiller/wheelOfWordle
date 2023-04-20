@@ -6,7 +6,9 @@ let eventPool = [
   'updatePlayer',
   'playerGuess',
   'PlayerScore',
-  'playerTurn'
+  'playerTurn',
+  'gameOver',
+  'playerReady'
 ]
 
 module.exports = eventPool;

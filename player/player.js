@@ -1,20 +1,22 @@
-'use strict'
+'use strict';
 
 require('dotenv').config();
 const prompt = require('prompt-sync')();
 const { io } = require('socket.io-client');
-const SERVER_URL = process.env.SERVER_URL
-const eventPool = require('../eventPool')
-const Chance = require('chance')
+const SERVER_URL = process.env.SERVER_URL;
+const eventPool = require('../eventPool');
+const Chance = require('chance');
 const chance = new Chance();
 
-const socket = io(SERVER_URL)
+const socket = io(SERVER_URL);
+
+const playerName = prompt('Enter your name: ');
 
 let player = {
-  name: chance.name(),
+  name: playerName,
   id: 1,
   score: 0,
-}
+};
 
 socket.on(eventPool[5], (payload) => {
   console.log(payload.revealedWord)
@@ -36,17 +38,29 @@ socket.on(eventPool[2], (updatedPlayer) =>{
   player = updatedPlayer; 
 })
 
-socket.on(eventPool[1], (message) =>{
-  console.log(message)
-})
+socket.on(eventPool[1], (message) => {
+  console.log(message);
+});
+
+socket.on(eventPool[6], (message) => {
+  console.log(message);
+
+  const playAgain = prompt('Do you want to play again? (y/n): ');
+
+  if (playAgain.toLowerCase() === 'y') {
+    player.score = 0;
+    socket.emit('restartGame');
+  } else {
+    socket.disconnect();
+  }
+});
+
+socket.on('gameRestarted', () => {
+  console.log('Game has been restarted!');
+});
 
 socket.on(eventPool[0], (player) => {
-  console.log(`${player.name} HAS JOINED THE GAME`)
-} )
+  console.log(`${player.name} HAS JOINED THE GAME`);
+});
 
-socket.emit(eventPool[0], player)
-
-
-
-
-
+socket.emit(eventPool[0], player);
