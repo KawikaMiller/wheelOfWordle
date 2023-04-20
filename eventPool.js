@@ -3,6 +3,9 @@
 let eventPool = [
   'playerJoin',
   'gameStart',
+  'updatePlayer',
+  'playerGuess',
+  'PlayerScore',
   'playerTurn'
 ]
 
