@@ -11,34 +11,44 @@ This is a server for a fun word based guessing game where the users take turns g
 3. [Prerequisites](#prerequisites)
 4. [Installation](#installation)
 5. [Usage](#usage)
-6. [API](#api)
-7. [Testing](#testing)
-8. [Contributing](#contributing)
-9. [License](#license)
+6. [Creators](#creators)
+7. [Contributing](#contributing)
+8. [License](#license)
 
 ## Description
 
-This is a project called The Code Academy Parcel Service or CAPS. It is designed to act as a third party software between shops and deliver personel. When a shop has an order ready for delivery, they will generate a payload of information that the server distributes to the delivery personel. When the order is picked up and delivered, they store is notified.
+This is a Node.js server-side code that sets up a Socket.IO server to handle real-time communication
+between clients. It creates a game where players join a room and take turns guessing letters to
+reveal a secret word. The code initializes a player queue, a word pool, and a secret word. It also
+sets up event listeners for when a player joins the game, makes a guess, and when the game is over.
+The code emits events to update the clients on the game state and sends messages to the clients to
+display on their screens. The `dotenv` package is used to load environment variables from a `.env`
+file. The `chalk` package is used to add color to console output.
 
 ## UML
 
 ![UML](./Lab_14_UML.png)
+![LogicFlow](./Lab_14_Flow.png)
 
 ## Features
 
-- Listener for 'pickup': allows to activate features when 'pickup' event occurs
-- Listener for 'in-transit': updates the store with status.
-- Listener for 'delivered': updates the store and generates a thank you note.
+- Event for 'playerJoin': When the player joins, it will prompt them for their username. If they don't enter one, they will be given a random animal name.
+- Event for 'gameStart': We wait until 2 players have joined the game room before starting the game.
+- Event for 'updatePlayer': Allows us to update the players score.
+- Event for 'playerGuess': Takes the players guess and compares it to the secret word. If its correct, it call the playerScore event. If its wrong, it will let them know its wrong.
+- Event for 'playerScore': Adds a point the the players score.
+- Event for 'PlayerTurn': Keeps track of the players turn based off of their id.
 
 ## Prerequisites
 
 List any prerequisites required to use the application, such as:
 
-- Node.js (version 14.x.x or higher)
-- npm (version 6.x.x or higher)
-- jest
-- chance
-- prompt-sync
+- chalk: ^4.1.2,
+- chance: ^1.1.11,
+- dotenv: ^16.0.3,
+- prompt-sync: ^4.2.0,
+- socket.io: ^4.6.1,
+- socket.io-client: ^4.6.1
 
 ## Installation
 
@@ -48,72 +58,37 @@ Step-by-step instructions on how to install the application, including code snip
 
 ## Clone the repository
 
-git clone https://github.com/goodpudding/cap.git
+git clone [https://github.com/KMArtwork/wheelOfWordle](https://github.com/KMArtwork/wheelOfWordle)
 
 ## Change into the project directory
 
-cd project-name
+cd wheelOfWordle
 
 ## Install the dependencies
 
 npm install
 
+## Configure .env
+
+Find (.env.sample) file. Rename it to (.env). It is currently configured for port 3001.
+
 ## Run the application in development mode
 
-npm run dev
+node server.js
+
+node player/player.js
+
 \`\`\`
 
 ## Usage
 
-Provide instructions and examples on how to use your application, including code snippets:
+In order to use this, you will need to open at least 3 terminals. One to start the server with (node server.js) and a terminal for each player(node player/player.js). Start the server first, then start each player. As each player starts their client, they will be prompted for their username. Once both players have created their name or were assigned a default, the game will begin with the client that started first.
 
-\`\`\`javascript
-// Example code snippet
-const example = require('your-module');
-example.doSomething();
-\`\`\`
+![sample](sample.png)
 
-## API
+## Creators
 
-If your application has an API, provide documentation for each endpoint, including request and response formats.
-
-### `Endpoint 1`
-
-**Request:**
-
-- Method: `GET`
-- URL: `/api/endpoint1`
-- Parameters: `{ parameter1: 'value1', parameter2: 'value2' }`
-
-**Response:**
-
-- Status: `200 OK`
-- Body: `{ key1: 'value1', key2: 'value2' }`
-
-### `Endpoint 2`
-
-**Request:**
-
-- Method: `POST`
-- URL: `/api/endpoint2`
-- Body: `{ key1: 'value1', key2: 'value2' }`
-
-**Response:**
-
-- Status: `201 Created`
-- Body: `{ message: 'Resource created successfully' }`
-
-## Testing
-
-Explain how to run tests for your application:
-
-\`\`\`bash
-
-## Run tests
-
-npm test driver-handler
-npm test vendor-handler
-\`\`\`
+This project was created by [Kawika Miller](https://github.com/KMArtwork) and [Trey Young](https://github.com/goodpudding)
 
 ## Contributing
 
